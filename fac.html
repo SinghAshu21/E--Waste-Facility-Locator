@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Waste Recyclers in Lucknow - धरत-E</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* Re-using some styles from your main page for consistency */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #e6ebe6;
+            color: #333; /* Changed to dark for content */
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: #46a049;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar (copy from your main page) */
+        nav {
+            background-color: #1b1b1b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            color: white; /* Ensure nav text is white */
+        }
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        nav .logo span {
+            color: #46a049; /* green 'E' */
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li {
+            font-weight: 500;
+            cursor: pointer;
+        }
+        nav ul li:hover {
+            color: #46a049;
+        }
+        nav .btn-recycler {
+            background-color: #46a049;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none; /* Add border none for buttons */
+        }
+        nav .btn-recycler:hover {
+            background-color: #3b8b3a;
+        }
+
+
+        .container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1f3040;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+
+        .recycler-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recycler-card {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .recycler-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recycler-card h2 {
+            color: #46a049;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .recycler-card p {
+            margin-bottom: 0.5rem;
+            color: #555;
+            flex-grow: 1; /* Allows paragraphs to take available space */
+        }
+
+        .recycler-card .contact-info {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 1rem;
+        }
+        .recycler-card .contact-info strong {
+            color: #333;
+        }
+
+        .recycler-card .btn-contact {
+            display: inline-block;
+            background-color: #46a049;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .recycler-card .btn-contact:hover {
+            background-color: #3b8b3a;
+            text-decoration: none;
+        }
+
+        /* Footer (copy from your main page) */
+        footer {
+            background-color: #1b1b1b;
+            color: white;
+            padding: 2rem 1rem 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 7rem;
+            font-size: 0.9rem;
+            user-select: none;
+            flex-wrap: wrap;
+            margin-top: 3rem; /* Add some space above the footer */
+        }
+        footer div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        footer div span {
+            cursor: default;
+            font-weight: 400;
+            opacity: 0.75;
+        }
+        footer .tech-stack {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding-top: 0.15rem;
+        }
+        .tech-icon {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 4px;
+            opacity: 0.75;
+            transition: opacity 0.3s ease;
+            cursor: default;
+        }
+        .tech-icon:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 0.75rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .recycler-list {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+            footer {
+                gap: 2rem;
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo" aria-label="Dharat E logo">
+            धरत-<span>E</span>
+        </div>
+        <ul>
+            <li tabindex="0"><a href="how.html">How It Works</a></li>
+            <li tabindex="0">Find a Recycler</li>
+            <li tabindex="0">Our Mission</li>
+            <li tabindex="0"><a href="sellerdash.html">Dashboard</a></li>
+        </ul>
+        <div>
+            <button class="btn-recycler" aria-label="Join as Recycler">
+               <a href="recyclerlogin.html"> I AM A RECYCLER (Join Us)</a>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>E-Waste Recycling Facilities in Lucknow</h1>
+        <div class="recycler-list">
+            <div class="recycler-card">
+                <h2>GreenCycle Solutions</h2>
+                <p>
+                    A leading e-waste recycling facility committed to environmentally sound management of electronic waste. They offer certified data destruction and responsible disposal.
+                </p>
+                <div class="contact-info">
+                    <strong>Address:</strong> Industrial Area, Faizabad Road, Lucknow<br>
+                    <strong>Phone:</strong> +91 98765 43210<br>
+                    <strong>Email:</strong> info@greencyclesolutions.com
+                </div>
+                <a href="#" class="btn-contact">Contact Recycler</a>
+            </div>
+
+            <div class="recycler-card">
+                <h2>EcoTech Recycling Lucknow</h2>
+                <p>
+                    Specializing in the recycling of IT equipment, consumer electronics, and home appliances. EcoTech ensures maximum material recovery and minimal environmental impact.
+                </p>
+                <div class="contact-info">
+                    <strong>Address:</strong> Near Amausi Airport, Lucknow<br>
+                    <strong>Phone:</strong> +91 87654 32109<br>
+                    <strong>Email:</strong> contact@ecotechlucknow.com
+                </div>
+                <a href="#" class="btn-contact">Contact Recycler</a>
+            </div>
+
+            <div class="recycler-card">
+                <h2>City E-Waste Collectors</h2>
+                <p>
+                    Your local solution for convenient e-waste collection and processing. They cater to both individual and corporate clients with efficient pickup services.
+                </p>
+                <div class="contact-info">
+                    <strong>Address:</strong> Gomti Nagar, Lucknow<br>
+                    <strong>Phone:</strong> +91 76543 21098<br>
+                    <strong>Email:</strong> support@cityewaste.in
+                </div>
+                <a href="#" class="btn-contact">Contact Recycler</a>
+            </div>
+
+            <div class="recycler-card">
+                <h2>Renew Earth E-Recycle</h2>
+                <p>
+                    Committed to a sustainable future by providing comprehensive e-waste recycling services. They handle a wide range of electronic items.
+                </p>
+                <div class="contact-info">
+                    <strong>Address:</strong> Aliganj, Lucknow<br>
+                    <strong>Phone:</strong> +91 99887 76655<br>
+                    <strong>Email:</strong> renewearth@recycle.org
+                </div>
+                <a href="#" class="btn-contact">Contact Recycler</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <strong>About Us</strong>
+            <span>Support</span>
+            <span>Support</span>
+            <span>Partners</span>
+        </div>
+        <div>
+            <strong>Tech Stack</strong>
+            <div class="tech-stack" aria-label="Technology Logos">
+                <div class="tech-icon" title="Node.js"></div>
+                <div class="tech-icon" title="CSS3"></div>
+                <div class="tech-icon" title="React.js"></div>
+                <div class="tech-icon" title="GitHub"></div>
+                <div class="tech-icon" title="Twitter"></div>
+                <div class="tech-icon" title="Discord"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Placeholder for future interactivity if needed
+    </script>
+</body>
+</html>

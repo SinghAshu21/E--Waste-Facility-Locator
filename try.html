@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>धरत-E: E-Waste Recycling</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <style>
+        /* Reset and base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #e6ebe6;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Navbar */
+        nav {
+            background-color: #1b1b1b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        nav .logo span {
+            color: #46a049; /* green 'E' */
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li {
+            font-weight: 500;
+            cursor: pointer;
+        }
+        nav ul li:hover {
+            color: #46a049;
+        }
+        nav .btn-recycler {
+            background-color: #46a049;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none; /* Add border none for consistency */
+        }
+        nav .btn-recycler:hover {
+            background-color: #3b8b3a;
+        }
+        /* Hero section */
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80'); /* sample camera/electronics background */
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.65);
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        /* Input group */
+        .search-bar {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto 3rem auto;
+            border-radius: 30px;
+            overflow: hidden;
+            background-color: white;
+        }
+        .search-bar input[type="text"] {
+            flex-grow: 1;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            color: #333;
+            outline: none;
+            font-weight: 500;
+        }
+        .search-bar button {
+            background-color: #46a049;
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .search-bar button:hover {
+            background-color: #3b8b3a;
+        }
+        /* Icons and text under search */
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 2rem;
+            opacity: 0.9;
+        }
+        .hero-icons .icon-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            user-select: none;
+            gap: 0.6rem;
+            color: #ccc;
+        }
+        .hero-icons svg {
+            fill: #46a049;
+            height: 32px;
+            width: 32px;
+        }
+        /* Stats section */
+        .stats-section {
+            background-color: #1f3040;
+            padding: 3rem 1rem 2rem 1rem;
+            text-align: center;
+            color: white;
+        }
+        .stats-section h2 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+            opacity: 0.85;
+        }
+        .stats-inner {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-box {
+            min-width: 150px;
+            border-left: 1px solid #3b4a5a;
+            padding-left: 1.5rem;
+        }
+        .stat-box:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+        .stat-number {
+            font-weight: 900;
+            font-size: 1.8rem;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }

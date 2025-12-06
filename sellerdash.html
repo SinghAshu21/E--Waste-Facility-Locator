@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>धरत-E Recycler Dashboard</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9f8;
+    color: #252525;
+  }
+  header {
+    background-color: #252d29;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  header .left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  header .logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #48a342;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  header .logo svg {
+    width: 28px;
+    height: 28px;
+    fill: #48a342;
+  }
+  nav {
+    display: flex;
+    gap: 30px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  nav a.active,
+  nav a:hover {
+    border-bottom: 2.5px solid #48a342;
+  }
+  .welcome-text {
+    white-space: nowrap;
+  }
+  .btn-logout {
+    background-color: #e7f5de;
+    border: none;
+    border-radius: 12px;
+    color: #48a342;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .subnav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 24px;
+    background-color: #f9fff8;
+    font-size: 14px;
+    color: #48a342;
+    gap: 8px;
+    align-items: center;
+  }
+  .subnav svg {
+    width: 16px;
+    height: 16px;
+    fill: #48a342;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 28px 24px 48px;
+    background: linear-gradient(
+      180deg,
+      #f0faec 0%,
+      #f0faec 40%,
+      #f7f9f8 40%,
+      #f7f9f8 100%
+    );
+    border-radius: 0 0 10px 10px;
+  }
+
+  main h1 {
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0 0 6px 0;
+  }
+  main p.description {
+    color: #8e8e8e;
+    font-weight: 300;
+    font-size: 13px;
+    margin: 0 0 26px 0;
+  }
+
+  .glance {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .glance .card {
+    flex: 1;
+    background-color: white;
+    border: 2.5px solid #48a342;
+    border-radius: 12px;
+    padding: 24px 12px;
+    text-align: center;
+    font-weight: 600;
+    color: #252525;
+    box-sizing: border-box;
+  }
+  .glance .card svg {
+    width: 28px;
+    height: 28px;
+    fill: #48a342;
+    margin-bottom: 8px;
+    vertical-align: middle;
+  }
+  .glance .card .big {
+    font-size: 28px;
+    margin: 0 0 6px 0;
+  }
+  .glance .card small {
+    font-weight: 400;
+    font-size: 12px;
+    color: #555;
+  }
+
+  .content-row {
+    display: flex;
+    gap: 40px;
+  }
+
+  .notifications {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    padding: 18px 24px;
+    box-sizing: border-box;
+    font-size: 13px;
+  }
+  .notifications h2 {
+    font-weight: 700;
+    margin: 0 0 14px 0;
+  }
+  .notification-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .notification-list li {
+    border-top: 1px solid #e2e5e0;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .notification-list li:first-child {
+    border-top: none;
+  }
+  .notification-list li svg {
+    width: 18px;
+    height: 18px;
+    fill: #252525cc;
+    flex-shrink: 0;
+  }
+  .notification-list li span {
+    flex-grow: 1;
+  }
+  .notification-list li button,
+  .notification-list li .badge {
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid #48a342;
+    background-color: #c5e3be;
+    color: #2f7532;
+    padding: 2px 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .notification-list li button.update {
+    background-color: #48a342;
+    color: white;
+    border: none;
+  }
+
+  .actions {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 700;
+    color: #252525;
+  }
+  .actions h2 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .actions button {
+    display: block;
+    background-color: #48a342;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 10px;
+    width: 100%;
+    margin-bottom: 16px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .actions button svg {
+    vertical-align: middle;
+    margin-right: 6px;
+    width: 18px;
+    height: 18px;
+    fill: white;
+  }
+  .actions button.generate-report {
+    background-color: #ddd;
+    color: #777;
+    font-weight: 400;
+    cursor: default;
+  }
+
+  .local-overview {
+    margin-top: 28px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #252525;
+  }
+  .local-overview img {
+    margin-top: 12px;
+    border-radius: 8px;
+    max-width: 280px;
+    background-color: #e6e8ed;
+  }
+
+  footer {
+    background-color: #252d29;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 24px;
+    align-items: center;
+  }
+  footer nav {
+    display: flex;
+    gap: 24px;
+  }
+  footer nav a {
+    color: white;
+    text-decoration: none;
+  }
+  footer .social-icons {
+    display: flex;
+    gap: 14px;
+  }
+  footer .social-icons svg {
+    width: 18px;
+    height: 18px;
+    fill: #48a342;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="left">
+    <div class="logo" aria-label="धरत-E logo">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12L7 7v3h7v4H7v3zM14.5 19c3.6 0 6.5-2.9 6.5-6.5S18.1 6 14.5 6c-0.7 0-1.4 0.1-2 0.3v-1.6L9.97 8.21 11.53 9.7V13h1.96l1.53-2.84c0.1 0.4 0.2 0.82 0.2 1.26 0 2.2-1.8 4-4 4-0.56 0-1.08-0.1-1.54-0.26l-1.09 1.67c0.82 0.46 1.78 0.74 2.71 0.74z"/></svg>
+      धरत-E
+    </div>
+    <nav>
+      <a href="#" class="active" aria-current="page">Deshboard</a>
+      <a href="#">New E-Waste Requests</a>
+      <a href="#">My Pickups / Collections</a>
+      <a href="#">Reports &amp; Analytics</a>
+    </nav>
+  </div>
+  <div>
+    <span class="welcome-text">Welcome, [Company Name]</span>
+    <button class="btn-logout" type="button">Log Out</button>
+  </div>
+</header>
+
+<div class="subnav" aria-label="Help and support link">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 2a10 10 0 1010 10A10.0114 10.0114 0 0012 2zm1 17h-2v-2h2zm1.07-7.75a1.5 1.5 0 01-2.14 0 1.54 1.54 0 01-.45-1.07 1.5 1.5 0 013 0 1.54 1.54 0 01-.41 1.08z"/>
+  </svg>
+  <a href="#" style="color:#48a342;">Help / Support</a>
+</div>
+
+<main>
+  <h1>
+    Welcome to Your <strong>धरत-E</strong> Recycler Dashboard, [Caname!
+  </h1>
+  <p class="description">
+  </p>
+
+  <section aria-label="At a Glance statistics" class="glance" role="region" tabindex="0">
+    <div class="card" aria-label="Total E-Waste Processed This Year: 1500 kilograms">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L15 8H9l3-6zm-7 9h2v2H5zm14 0h2v2h-2zM7 20h10v2H7z"/></svg>
+      <p class="big">1500 kg</p>
+      <small>Total E-Waste sold (This Year)</small>
+    </div>
+    <div class="card" aria-label="New Pickup Requests: 12">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13l-1 4h18v-6h-2v5H5v-3H3zM6 7h12v3H6zM17 3h2v5h-2z"/></svg>
+      <p class="big">12</p>
+      <small>New Pickup Requests</small>
+    </div>
+    <div class="card" aria-label="In Progress Collections: 5">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1010 10A10.0114 10.0114 0 0012 2zm0 15a5 5 0 115-5 5 5 0 01-5 5z"/></svg>
+      <p class="big">5</p>
+      <small>In Progress Collections)</small>
+    </div>
+    <div class="card" aria-label="Revenue Last Month: 50,000 Rupees">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.45 14.32a3.61 3.61 0 01-3.38-5.19L8 10h8.46l-.91 1.75h-2.86A1.54 1.54 0 0011.45 16a1.72 1.72 0 001.43.72z"/></svg>
+      <p class="big">₹ 50,000</p>
+      <small>Revenue (Last Month)</small>
+    </div>
+  </section>
+
+  <div class="content-row">
+    <section class="notifications" aria-labelledby="notif-title" role="region" tabindex="0">
+      <h2 id="notif-title">Recent Activity &amp; Notifications</h2>
+      <ul class="notification-list">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm0 14H5V7h14z"/></svg>
+          <span>New Request</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-3 0-9 1.5-9 4.5V20h18v-1.5c0-3-6-4.5-9-4.5z"/></svg>
+          <span>Pickup Confirmed</span>
+          <button type="button" aria-label="View Details of Pickup Confirmed">View Details</button>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1010 10A10.0114 10.0114 0 0012 2zm0 5a5 5 0 115-5 5 5 0 01-5 5z"/></svg>
+          <span>Profile Update Needed</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 20H4v-2H2l4-4h10l4 4h-2zm-6-3a3 3 0 113 3 3 3 0 01-3-3z"/></svg>
+          <span>New Message</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm0 14H5V7h14z"/></svg>
+          <span>Read Message</span>
+          <button class="update" type="button" aria-label="Update Now Read Message">Update Now</button>
+        </li>
+      </ul>
+    </section>
+
+    <section class="actions" aria-labelledby="actions-title" role="region" tabindex="0">
+      <h2 id="actions-title">What Would It Like to Do?</h2>
+      <button type="button" aria-label="View All New E-Waste Requests">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2 6 10l6 8 6-8-6-8z"/></svg>
+        View All New E-Waste Requests
+      </button>
+      <button type="button" aria-label="Manage My Profile and Certifications">
+        Manage My Profile &amp; Certifications
+      </button>
+      <button class="generate-report" type="button" aria-label="Generate Report" disabled>
+        Generate Report
+      </button>
+    </section>
+  </div>
+
+  <section class="local-overview" aria-label="Local Overview" role="region" tabindex="0">
+    <strong>Local Overview</strong><br />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/BlankMap-World-Mercator.svg/320px-BlankMap-World-Mercator.svg.png"
+      alt="Map showing local overview location pins" />
+  </section>
+</main>
+
+<footer>
+  <nav aria-label="Footer navigation links">
+    <a href="#">About Us</a>
+    <a href="#">Support</a>
+    <a href="#">Partners</a>
+    <a href="#">Tech Stack</a>
+  </nav>
+  <div class="social-icons" aria-label="Social media links">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" title="Twitter"><path d="M24 4.56a9.83 9.83 0 01-2.83.78 4.93 4.93 0 002.17-2.72 9.84 9.84 0 01-3.13 1.19 4.92 4.92 0 00-8.39 4.48A13.98 13.98 0 011.67 3.15a4.91 4.91 0 001.52 6.56 4.92 4.92 0 01-2.22-.62v.06a4.92 4.92 0 003.95 4.82 4.94 4.94 0 01-2.21.08 4.92 4.92 0 004.6 3.41A9.86 9.86 0 010 19.54a13.91 13.91 0 007.55 2.21c9.05 0 14-7.5 14-14v-.64A10 10 0 0024 4.56z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" title="Instagram"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 14a4 4 0 110-8 4 4 0 010 8zm-10-4a5 5 0 1010 0 5 5 0 00-10 0z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" title="GitHub"><path d="M12 2a10 10 0 00-3.16 19.48c.5.09.66-.22.66-.5v-1.74c-2.68.58-3.25-1.31-3.25-1.31a2.56 2.56 0 00-1.07-1.4c-.87-.6.07-.59.07-.59a2.02 2.02 0 011.48 1 2.04 2.04 0 002.77.84c.09-.65.33-1.3.6-1.6-2.14-.24-4.38-1.07-4.38-4.76a3.7 3.7 0 011-2.56 3.45 3.45 0 01.1-2.52s.83-.27 2.74 1a9.06 9.06 0 015 0c1.91-1.26 2.74-1 2.74-1a3.45 3.45 0 01.1 2.52 3.7 3.7 0 011 2.56c0 3.7-2.25 4.52-4.4 4.76a2.26 2.26 0 01.65 1.75v2.6c0 .28.17.6.67.5a10 10 0 00-3.16-19.48z"/></svg>
+  </div>
+</footer>
+</body>
+</html>
